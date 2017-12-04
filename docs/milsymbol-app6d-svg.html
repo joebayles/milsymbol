@@ -20,7 +20,11 @@
     }
 
     figure {
-      text-align: center
+      text-align: center;
+    }
+
+    svg {
+      max-width: 100%;
     }
 
     table {
@@ -73,20 +77,47 @@
       return { pre: drawArray1, post: drawArray2, bbox: gbbox };
     });
     //*/
+    function generatenavigation() {
+      var i = 0;
+      var indexoftables = "";
+      document.querySelectorAll("h2, h3").forEach(function (d) {
+        i++;
+        d.id = "heading-" + i;
+        indexoftables += '<a href="#heading-' + i + '">' + d.textContent + '</a><br>\n';
+      });
+      document.getElementById("indexoftables").innerHTML = indexoftables;
+
+      i = 0;
+      var indexoffigures = "";
+      document.querySelectorAll("figure").forEach(function (d) {
+        i++;
+        d.id = "figure-" + i;
+        d = d.getElementsByTagName("figcaption").item(0);
+        indexoffigures += '<a href="#figure-' + i + '">' + d.textContent + '</a><br>\n';
+      });
+      document.getElementById("indexoffigures").innerHTML = indexoffigures;
+
+    }
   </script>
 </head>
 
-<body>
+<body onload="generatenavigation();">
 
   <h1>Milsymbol APP-6 D Implementation</h1>
-  This page shows
-  <i>some of the</i> figures and tables from APP-6 D drawn with milsymbol.
-  <br> All symbols are drawn using milsymbol when the page is loaded, no images or other external resources than milsymbol is
+  This page shows figures and tables from APP-6 D drawn with milsymbol.
+  <br> All symbols are drawn using milsymbol when the page is loaded, no images or other external resources than milsymbol are
   used.
   <br>
-  <br> Because of the differences in text fields between 2525 and APP6, the nationality field is not yet implemented.
   <br>
+  <b>INDEX OF TABLES</b>
   <br>
+  <div id="indexoftables"></div>
+  <br>
+  <b>INDEX OF FIGURES</b>
+  <br>
+  <div id="indexoffigures"></div>
+  <br>
+
 
   <h3>Table 1-1: Standard Identities and Dimensions.</h3>
   <table>
@@ -17790,9 +17821,9 @@
     </tr>
   </table>
 
-  
-  <h3>Table 3-19:  Equipment Mobility Indicators</h3>
-  Note that milsymbol automatically moves up the mobility indicator to the bottom of the icon when the symbol is unframed. 
+
+  <h3>Table 3-19: Equipment Mobility Indicators</h3>
+  Note that milsymbol automatically moves up the mobility indicator to the bottom of the icon when the symbol is unframed.
   <table>
     <thead>
       <tr>
@@ -17839,7 +17870,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>WHEELED (CROSS-COUNTRY)
       </td>
@@ -17869,7 +17900,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>TRACKED
       </td>
@@ -17899,7 +17930,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>WHEELED AND TRACKED COMBINATION
       </td>
@@ -17929,7 +17960,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>TOWED
       </td>
@@ -17959,7 +17990,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>RAILWAY
       </td>
@@ -17989,7 +18020,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>OVER-SNOW (PRIME MOVER)
       </td>
@@ -18019,7 +18050,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>SLED
       </td>
@@ -18049,7 +18080,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>PACK ANIMALS
       </td>
@@ -18079,7 +18110,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>BARGE
       </td>
@@ -18109,7 +18140,7 @@
         </script>
       </td>
     </tr>
-  
+
     <tr>
       <td>AMPHIBIOUS
       </td>
@@ -21953,8 +21984,8 @@
       </td>
     </tr>
   </table>
-  
-  
+
+
   <h3>
     Table 4-4: Dismounted Individual Main Sector Icons</h3>
   <table border=1>
@@ -22293,23 +22324,50 @@
     </tr>
   </table>
 
-  
-  
-    <h3>Table 4-5:  Dismounted Individual Equipment Type Main Sector Icons</h3>
-    <table border=1>
-      <thead>
-        <tr>
-          <th>
-            Description
-          </th>
-          <th>
-            Icon
-          </th>
-          <th>
-            Remarks
-          </th>
-        </tr>
-      </thead>
+
+  Milsymbol will automaticly scale the weapons icon based on if there are any modifiers set or not.
+  <figure>
+    <script>
+      document.write(new ms.Symbol(
+        "10032700001103010527",
+        { size: 80 }).asSVG());
+    </script>
+    <script>
+      document.write(new ms.Symbol(
+        "10032700001103010000",
+        { size: 80 }).asSVG());
+    </script>
+    <script>
+      document.write(new ms.Symbol(
+        "10032700001103010027",
+        { size: 80 }).asSVG());
+    </script>
+    <script>
+      document.write(new ms.Symbol(
+        "10032700001103010500",
+        { size: 80 }).asSVG());
+    </script>
+    <figcaption>
+      Figure 4-6: Alternative Main Icon Symbol Sizes.
+    </figcaption>
+  </figure>
+
+
+  <h3>Table 4-5: Dismounted Individual Equipment Type Main Sector Icons</h3>
+  <table border=1>
+    <thead>
+      <tr>
+        <th>
+          Description
+        </th>
+        <th>
+          Icon
+        </th>
+        <th>
+          Remarks
+        </th>
+      </tr>
+    </thead>
     <tr>
       <td>
         <b>Lethal Weapons </b>
@@ -24732,6 +24790,46 @@
       </td>
     </tr>
   </table>
+
+
+  <h3>Table 4-8: Leadership Indicator Amplifier</h3>
+  <table border=1>
+    <thead>
+      <tr>
+        <th>
+          Description
+        </th>
+        <th>
+          Icon
+        </th>
+        <th>
+          Remarks
+        </th>
+      </tr>
+    </thead>
+    <tr>
+      <td>
+        LEADER
+        <br>
+        <br> Friend
+        <br> For the Code see Table A-8
+      </td>
+      <td>
+        <script>
+          document.write(new ms.Symbol("10032700710000000000", { size: size }).asSVG())
+        </script>
+      </td>
+      <td>
+
+      </td>
+    </tr>
+  </table>
+
+
+
+
+
+
 
 
   <figure>
